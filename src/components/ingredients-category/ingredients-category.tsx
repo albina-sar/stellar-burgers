@@ -9,13 +9,7 @@ export const IngredientsCategory = forwardRef<
   HTMLUListElement,
   TIngredientsCategoryProps
 >(({ title, titleRef, ingredients }, ref) => {
-  const constructorItemsState = useSelector(selectConstructor);
-
-  // Защита от undefined
-  const constructorItems = {
-    bun: constructorItemsState?.bun || null,
-    ingredients: constructorItemsState?.ingredients || []
-  };
+  const constructorItems = useSelector(selectConstructor);
 
   const ingredientsCounters = useMemo(() => {
     const { bun, ingredients: items } = constructorItems;

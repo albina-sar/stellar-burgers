@@ -16,7 +16,6 @@ export const BurgerIngredient: FC<TBurgerIngredientProps> = memo(
         ...ingredient,
         id: uuidv4()
       };
-      console.log('Добавляем ингредиент:', ingredientWithId);
       dispatch(addIngredient(ingredientWithId));
     };
 

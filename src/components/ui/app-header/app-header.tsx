@@ -16,7 +16,9 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName, pathname }) => (
         <NavLink
           to='/'
           className={({ isActive }) =>
-            `text text_type_main-default ml-2 mr-10 ${styles.link} ${isActive ? styles.link_active : ''}`
+            `text text_type_main-default ml-2 mr-10 ${styles.link} ${
+              isActive ? styles.link_active : ''
+            }`
           }
         >
           <BurgerIcon type={pathname === '/' ? 'primary' : 'secondary'} />
@@ -25,7 +27,9 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName, pathname }) => (
         <NavLink
           to='/feed'
           className={({ isActive }) =>
-            `text text_type_main-default ml-2 ${styles.link} ${isActive ? styles.link_active : ''}`
+            `text text_type_main-default ml-2 ${styles.link} ${
+              isActive ? styles.link_active : ''
+            }`
           }
         >
           <ListIcon
@@ -43,7 +47,9 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName, pathname }) => (
         <NavLink
           to='/profile'
           className={({ isActive }) =>
-            `text text_type_main-default ml-2 ${styles.link} ${isActive ? styles.link_active : ''}`
+            `text text_type_main-default ml-2 ${styles.link} ${
+              isActive ? styles.link_active : ''
+            }`
           }
         >
           <ProfileIcon

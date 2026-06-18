@@ -15,7 +15,7 @@ import orderInfoReducer from './slices/orderInfoSlice';
 const store = configureStore({
   reducer: {
     ingredients: ingredientsReducer,
-    constructor: constructorReducer,
+    burgerConstructor: constructorReducer,
     order: orderReducer,
     feed: feedReducer,
     user: userReducer,

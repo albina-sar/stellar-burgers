@@ -12,10 +12,10 @@ export const OrderInfo: FC = () => {
   const { number } = useParams<{ number: string }>();
   const dispatch = useDispatch();
   const ingredients = useSelector(selectIngredients) || [];
-  const { order: orderData, isLoading } = useSelector(selectOrderInfo) || {
-    order: null,
-    isLoading: false
-  };
+  const orderInfoState = useSelector(selectOrderInfo);
+
+  const orderData = orderInfoState?.order || null;
+  const isLoading = orderInfoState?.isLoading || false;
 
   useEffect(() => {
     if (number) {
@@ -31,7 +31,7 @@ export const OrderInfo: FC = () => {
       [key: string]: TIngredient & { count: number };
     };
     const ingredientsInfo = orderData.ingredients.reduce(
-      (acc: TIngredientsWithCount, item) => {
+      (acc: TIngredientsWithCount, item: string) => {
         if (!acc[item]) {
           const ingredient = ingredients.find((ing) => ing._id === item);
           if (ingredient) {
@@ -45,11 +45,11 @@ export const OrderInfo: FC = () => {
         }
         return acc;
       },
-      {}
+      {} as TIngredientsWithCount
     );
 
     const total = Object.values(ingredientsInfo).reduce(
-      (acc, item) => acc + item.price * item.count,
+      (acc: number, item) => acc + item.price * item.count,
       0
     );
 

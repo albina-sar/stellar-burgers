@@ -18,8 +18,8 @@ import {
   selectIngredients,
   selectIngredientsError
 } from '../../services/slices/ingredientsSlice';
+import { getUser } from '../../services/slices/userSlice';
 import { useEffect } from 'react';
-import { Preloader } from '@ui';
 import styles from './app.module.css';
 import { ProtectedRoute } from '../protected-route';
 
@@ -33,60 +33,36 @@ const App = () => {
   const ingredients = useSelector(selectIngredients);
   const error = useSelector(selectIngredientsError);
 
-  // Логи для отладки
-  console.log('isIngredientsLoading:', isIngredientsLoading);
-  console.log('ingredients count:', ingredients?.length || 0);
-  console.log('error:', error);
-
   useEffect(() => {
-    console.log('Отправляем запрос getIngredients');
     dispatch(getIngredients());
+    dispatch(getUser());
   }, [dispatch]);
 
   const handleModalClose = () => {
     navigate(-1);
   };
 
-  // Если идет загрузка
-  if (isIngredientsLoading) {
-    return (
-      <div className={styles.app}>
-        <AppHeader />
-        <Preloader />
-      </div>
-    );
-  }
+  // Функция для получения номера заказа из URL
+  const getOrderNumberFromPath = () => {
+    const path = location.pathname;
+    const match = path.match(/\/(\d+)$/);
+    return match ? match[1] : '';
+  };
 
-  // Если ошибка
-  if (error) {
-    return (
-      <div className={styles.app}>
-        <AppHeader />
-        <div className={`${styles.error} text text_type_main-medium pt-4`}>
-          {error}
-        </div>
-      </div>
-    );
-  }
-
-  // Если нет ингредиентов, но загрузка завершена
-  if (!ingredients || ingredients.length === 0) {
-    return (
-      <div className={styles.app}>
-        <AppHeader />
-        <div className={`${styles.title} text text_type_main-medium pt-4`}>
-          Нет ингредиентов
-        </div>
-      </div>
-    );
-  }
-
-  // Все загружено, показываем страницу
   return (
     <div className={styles.app}>
       <AppHeader />
       <Routes location={background || location}>
-        <Route path='/' element={<ConstructorPage />} />
+        <Route
+          path='/'
+          element={
+            <ConstructorPage
+              isLoading={isIngredientsLoading}
+              ingredients={ingredients}
+              error={error}
+            />
+          }
+        />
         <Route path='/feed' element={<Feed />} />
         <Route path='/feed/:number' element={<OrderInfo />} />
         <Route path='/ingredients/:id' element={<IngredientDetails />} />
@@ -154,7 +130,10 @@ const App = () => {
           <Route
             path='/feed/:number'
             element={
-              <Modal title='Детали заказа' onClose={handleModalClose}>
+              <Modal
+                title={`#${getOrderNumberFromPath().padStart(6, '0')}`}
+                onClose={handleModalClose}
+              >
                 <OrderInfo />
               </Modal>
             }
@@ -171,7 +150,10 @@ const App = () => {
             path='/profile/orders/:number'
             element={
               <ProtectedRoute>
-                <Modal title='Детали заказа' onClose={handleModalClose}>
+                <Modal
+                  title={`#${getOrderNumberFromPath().padStart(6, '0')}`}
+                  onClose={handleModalClose}
+                >
                   <OrderInfo />
                 </Modal>
               </ProtectedRoute>

@@ -11,11 +11,11 @@ import { OrderStatus } from '@components';
 
 export const OrderInfoUI: FC<OrderInfoUIProps> = memo(({ orderInfo }) => (
   <div className={styles.wrap}>
-    <h3 className={`text text_type_main-medium  pb-3 pt-10 ${styles.header}`}>
+    <h4 className={`text text_type_main-medium pb-3 ${styles.header}`}>
       {orderInfo.name}
-    </h3>
+    </h4>
     <OrderStatus status={orderInfo.status} />
-    <p className={`text text_type_main-medium pt-15 pb=6`}>Состав:</p>
+    <p className={`text text_type_main-medium pt-15 pb-6`}>Состав:</p>
     <ul className={`${styles.list} mb-8`}>
       {Object.values(orderInfo.ingredientsInfo).map((item, index) => (
         <li className={`pb-4 pr-6 ${styles.item}`} key={index}>
@@ -42,10 +42,12 @@ export const OrderInfoUI: FC<OrderInfoUIProps> = memo(({ orderInfo }) => (
       <p className='text text_type_main-default text_color_inactive'>
         <FormattedDate date={orderInfo.date} />
       </p>
-      <span className={`text text_type_digits-default pr-4 ${styles.total}`}>
-        {orderInfo.total}
-      </span>
-      <CurrencyIcon type={'primary'} />
+      <div className={styles.totalWrapper}>
+        <span className={`text text_type_digits-default pr-4 ${styles.total}`}>
+          {orderInfo.total}
+        </span>
+        <CurrencyIcon type={'primary'} />
+      </div>
     </div>
   </div>
 ));

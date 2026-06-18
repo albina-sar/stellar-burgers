@@ -1,21 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
-
-// Определяем тип напрямую, без импорта из utils-types
-export interface TConstructorIngredient {
-  _id: string;
-  name: string;
-  type: string;
-  proteins: number;
-  fat: number;
-  carbohydrates: number;
-  calories: number;
-  price: number;
-  image: string;
-  image_large: string;
-  image_mobile: string;
-  id: string;
-}
+import { TConstructorIngredient } from '@utils-types';
 
 interface ConstructorState {
   bun: TConstructorIngredient | null;
@@ -28,15 +12,10 @@ const initialState: ConstructorState = {
 };
 
 const constructorSlice = createSlice({
-  name: 'constructor',
+  name: 'burgerConstructor',
   initialState,
   reducers: {
     addIngredient: (state, action: PayloadAction<TConstructorIngredient>) => {
-      // Проверяем, что state.ingredients существует
-      if (!state.ingredients) {
-        state.ingredients = [];
-      }
-
       if (action.payload.type === 'bun') {
         state.bun = action.payload;
       } else {
@@ -44,15 +23,11 @@ const constructorSlice = createSlice({
       }
     },
     removeIngredient: (state, action: PayloadAction<string>) => {
-      if (!state.ingredients) {
-        state.ingredients = [];
-      }
       state.ingredients = state.ingredients.filter(
         (item) => item.id !== action.payload
       );
     },
     moveIngredientUp: (state, action: PayloadAction<number>) => {
-      if (!state.ingredients || state.ingredients.length === 0) return;
       const index = action.payload;
       if (index > 0 && index < state.ingredients.length) {
         const [item] = state.ingredients.splice(index, 1);
@@ -60,7 +35,6 @@ const constructorSlice = createSlice({
       }
     },
     moveIngredientDown: (state, action: PayloadAction<number>) => {
-      if (!state.ingredients || state.ingredients.length === 0) return;
       const index = action.payload;
       if (index >= 0 && index < state.ingredients.length - 1) {
         const [item] = state.ingredients.splice(index, 1);
@@ -82,7 +56,8 @@ export const {
   clearConstructor
 } = constructorSlice.actions;
 
-export const selectConstructor = (state: { constructor: ConstructorState }) =>
-  state.constructor || { bun: null, ingredients: [] };
+export const selectConstructor = (state: {
+  burgerConstructor: ConstructorState;
+}) => state.burgerConstructor;
 
 export default constructorSlice.reducer;
