@@ -26,7 +26,10 @@ export const ConstructorPage: FC<ConstructorPageProps> = ({
   if (error) {
     return (
       <main className={styles.containerMain}>
-        <div className='text text_type_main-medium pt-4' style={{ color: 'red' }}>
+        <div
+          className='text text_type_main-medium pt-4'
+          style={{ color: 'red' }}
+        >
           {error}
         </div>
       </main>
@@ -36,9 +39,7 @@ export const ConstructorPage: FC<ConstructorPageProps> = ({
   if (!ingredients || ingredients.length === 0) {
     return (
       <main className={styles.containerMain}>
-        <div className='text text_type_main-medium pt-4'>
-          Нет ингредиентов
-        </div>
+        <div className='text text_type_main-medium pt-4'>Нет ингредиентов</div>
       </main>
     );
   }

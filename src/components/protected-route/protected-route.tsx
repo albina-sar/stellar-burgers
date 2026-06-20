@@ -1,7 +1,10 @@
 import { ReactNode } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useSelector } from '../../services/store';
-import { selectUser } from '../../services/slices/userSlice';
+import {
+  selectUser,
+  selectIsAuthChecked
+} from '../../services/slices/userSlice';
 import { Preloader } from '@ui';
 
 type ProtectedRouteProps = {
@@ -15,9 +18,9 @@ export const ProtectedRoute = ({
 }: ProtectedRouteProps) => {
   const location = useLocation();
   const user = useSelector(selectUser);
-  const isLoading = useSelector((state) => state.user.isLoading);
+  const isAuthChecked = useSelector(selectIsAuthChecked);
 
-  if (isLoading) {
+  if (!isAuthChecked) {
     return <Preloader />;
   }
 

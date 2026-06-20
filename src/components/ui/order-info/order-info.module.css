@@ -12,6 +12,10 @@
 
 .number {
   text-align: left;
+  font-family: Iceland;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 24px;
 }
 
 .status {
@@ -22,6 +26,10 @@
   margin: 0;
   text-align: left;
   flex-shrink: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
 }
 
 .img_wrap {
@@ -59,6 +67,10 @@
   align-items: center;
   width: 100%;
   padding-right: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .quantity {
@@ -111,4 +123,11 @@
 
 .total {
   margin-right: 8px;
+}
+
+.compositionTitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
 }

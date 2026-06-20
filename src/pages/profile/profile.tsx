@@ -28,8 +28,7 @@ export const Profile: FC = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    const updateData: { name?: string; email?: string; password?: string } =
-      {};
+    const updateData: { name?: string; email?: string; password?: string } = {};
     if (formValue.name !== user?.name) updateData.name = formValue.name;
     if (formValue.email !== user?.email) updateData.email = formValue.email;
     if (formValue.password) updateData.password = formValue.password;
