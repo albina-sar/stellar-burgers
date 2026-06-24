@@ -3,8 +3,16 @@ import { OrderStatusUIProps } from './type';
 
 export const OrderStatusUI: FC<OrderStatusUIProps> = ({ textStyle, text }) => (
   <span
-    className='text text_type_main-default pt-2'
-    style={{ color: textStyle }}
+    className='pt-2'
+    style={{
+      color: textStyle,
+      textAlign: 'left',
+      display: 'block',
+      fontFamily: '"JetBrains Mono", monospace',
+      fontWeight: 400,
+      fontSize: '16px',
+      lineHeight: '24px'
+    }}
   >
     {text}
   </span>

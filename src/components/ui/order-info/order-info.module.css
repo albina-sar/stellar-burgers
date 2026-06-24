@@ -1,9 +1,21 @@
 .wrap {
   margin: 0 auto;
-  width: 640px;
+  width: 100%;
+  max-width: 640px;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex: 1 1 auto;
+  min-height: 0;
 }
+
 .number {
-  text-align: center;
+  text-align: left;
+  font-family: Iceland;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 24px;
 }
 
 .status {
@@ -12,6 +24,12 @@
 
 .header {
   margin: 0;
+  text-align: left;
+  flex-shrink: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
 }
 
 .img_wrap {
@@ -20,6 +38,7 @@
   border-radius: 50%;
   background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
   position: relative;
+  flex-shrink: 0;
 }
 
 .border {
@@ -31,6 +50,7 @@
   left: 2px;
   top: 2px;
   text-align: center;
+  overflow: hidden;
 }
 
 .img {
@@ -38,23 +58,37 @@
   right: 25px;
   width: 112px;
   height: 56px;
+  object-fit: cover;
 }
 
 .item {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
+  padding-right: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .quantity {
   margin-left: auto;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .list {
   list-style: none;
-  padding: 0;
+  padding: 0 6px 0 0;
+  margin: 0 0 16px 0;
   overflow-y: auto;
-  max-height: 320px;
+  overflow-x: hidden;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  scrollbar-width: thin;
 }
 
 .list::-webkit-scrollbar {
@@ -62,15 +96,38 @@
   background-color: #2f2f37;
 }
 
+.list::-webkit-scrollbar-track {
+  background: #2f2f37;
+}
+
 .list::-webkit-scrollbar-thumb {
-  background-color: #8585ad;
+  background: #8585ad;
+  border-radius: 4px;
 }
 
 .bottom {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
+  flex-shrink: 0;
+  padding-top: 16px;
+  border-top: 1px solid #2f2f37;
+  width: 100%;
 }
+
+.totalWrapper {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
 .total {
-  margin-left: auto;
+  margin-right: 8px;
+}
+
+.compositionTitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
 }

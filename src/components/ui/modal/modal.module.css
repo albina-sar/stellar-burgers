@@ -13,12 +13,30 @@
     0px 16px 24px rgba(0, 0, 0, 0.04),
     0px 4px 8px rgba(0, 0, 0, 0.04),
     0px 0px 1px rgba(0, 0, 0, 0.04);
+  width: 720px;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .header {
   display: flex;
   align-items: center;
   min-height: 64px;
+  justify-content: space-between;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.title {
+  margin: 0;
+  text-align: left;
+  font-family: Iceland;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 24px;
 }
 
 .button {
@@ -31,6 +49,7 @@
   background-color: rgba(0, 0, 0, 0);
   margin-left: auto;
   padding: 0;
+  flex-shrink: 0;
 }
 
 .img {
@@ -41,4 +60,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  flex: 1 1 auto;
+  overflow: hidden;
+  min-height: 0;
 }
