@@ -7,7 +7,9 @@ export const OrderDetailsUI: React.FC<OrderDetailsUIProps> = ({
   orderNumber
 }) => (
   <>
-    <h2 className={`${styles.title} mt-2 mb-4`}>{orderNumber}</h2>
+    <h2 className={`${styles.title} mt-2 mb-4`} data-testid='order-number'>
+      {orderNumber}
+    </h2>
     <p className='text text_type_main-medium'>идентификатор заказа</p>
     <img
       className={styles.img}

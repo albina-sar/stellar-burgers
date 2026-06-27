@@ -7,9 +7,13 @@ export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  retries: 0,
+  workers: 1,
   reporter: 'html',
+  timeout: 30000,
+  expect: {
+    timeout: 5000,
+  },
   use: {
     baseURL: 'http://localhost:4000',
     trace: 'on-first-retry',
@@ -35,8 +39,8 @@ export default defineConfig({
   webServer: {
     command: 'npm run start',
     url: 'http://localhost:4000',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000,
+    reuseExistingServer: true,
+    timeout: 60 * 1000,
     env: {
       BURGER_API_URL: 'https://norma.education-services.ru/api',
     },
