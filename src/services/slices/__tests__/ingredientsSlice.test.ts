@@ -26,21 +26,34 @@ describe('ingredientsSlice', () => {
       image: 'image.png',
       image_large: 'image-large.png',
       image_mobile: 'image-mobile.png'
+    },
+    {
+      _id: '2',
+      name: 'Начинка',
+      type: 'main',
+      proteins: 15,
+      fat: 10,
+      carbohydrates: 20,
+      calories: 300,
+      price: 150,
+      image: 'image.png',
+      image_large: 'image-large.png',
+      image_mobile: 'image-mobile.png'
     }
   ];
 
-  it('should return initial state with unknown action', () => {
+  test('should return initial state with unknown action', () => {
     const state = ingredientsReducer(undefined, { type: 'UNKNOWN' });
     expect(state).toEqual(initialState);
   });
 
-  it('should handle getIngredients.pending', () => {
+  test('should handle getIngredients.pending', () => {
     const state = ingredientsReducer(initialState, getIngredients.pending(''));
     expect(state.isLoading).toBe(true);
     expect(state.error).toBe(null);
   });
 
-  it('should handle getIngredients.fulfilled', () => {
+  test('should handle getIngredients.fulfilled', () => {
     const state = ingredientsReducer(
       { ...initialState, isLoading: true },
       getIngredients.fulfilled(mockIngredients, '')
@@ -50,7 +63,7 @@ describe('ingredientsSlice', () => {
     expect(state.error).toBe(null);
   });
 
-  it('should handle getIngredients.rejected', () => {
+  test('should handle getIngredients.rejected', () => {
     const errorMessage = 'Ошибка загрузки';
     const state = ingredientsReducer(
       { ...initialState, isLoading: true },
@@ -60,19 +73,19 @@ describe('ingredientsSlice', () => {
     expect(state.error).toBe(errorMessage);
   });
 
-  it('should select ingredients', () => {
+  test('should select ingredients', () => {
     const state = {
       ingredients: { ...initialState, ingredients: mockIngredients }
     };
     expect(selectIngredients(state)).toEqual(mockIngredients);
   });
 
-  it('should select isLoading', () => {
+  test('should select isLoading', () => {
     const state = { ingredients: { ...initialState, isLoading: true } };
     expect(selectIngredientsLoading(state)).toBe(true);
   });
 
-  it('should select error', () => {
+  test('should select error', () => {
     const error = 'Test error';
     const state = { ingredients: { ...initialState, error } };
     expect(selectIngredientsError(state)).toBe(error);

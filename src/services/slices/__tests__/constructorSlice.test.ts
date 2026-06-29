@@ -44,18 +44,33 @@ describe('constructorSlice', () => {
     id: 'ing-1'
   };
 
-  it('should return initial state with unknown action', () => {
+  const mockIngredient2: TConstructorIngredient = {
+    _id: '3',
+    name: 'Начинка 2',
+    type: 'main',
+    proteins: 20,
+    fat: 15,
+    carbohydrates: 25,
+    calories: 350,
+    price: 200,
+    image: 'image.png',
+    image_large: 'image-large.png',
+    image_mobile: 'image-mobile.png',
+    id: 'ing-2'
+  };
+
+  test('should return initial state with unknown action', () => {
     const state = constructorReducer(undefined, { type: 'UNKNOWN' });
     expect(state).toEqual(initialState);
   });
 
-  it('should handle addIngredient for bun', () => {
+  test('should handle addIngredient for bun', () => {
     const state = constructorReducer(initialState, addIngredient(mockBun));
     expect(state.bun).toEqual(mockBun);
     expect(state.ingredients).toEqual([]);
   });
 
-  it('should handle addIngredient for ingredient', () => {
+  test('should handle addIngredient for ingredient', () => {
     const state = constructorReducer(
       initialState,
       addIngredient(mockIngredient)
@@ -64,7 +79,7 @@ describe('constructorSlice', () => {
     expect(state.ingredients).toContainEqual(mockIngredient);
   });
 
-  it('should handle removeIngredient', () => {
+  test('should handle removeIngredient', () => {
     const stateWithIngredients = {
       bun: null,
       ingredients: [mockIngredient]
@@ -76,12 +91,7 @@ describe('constructorSlice', () => {
     expect(state.ingredients).toEqual([]);
   });
 
-  it('should handle moveIngredientUp', () => {
-    const mockIngredient2: TConstructorIngredient = {
-      ...mockIngredient,
-      id: 'ing-2',
-      name: 'Начинка 2'
-    };
+  test('should handle moveIngredientUp', () => {
     const stateWithIngredients = {
       bun: null,
       ingredients: [mockIngredient, mockIngredient2]
@@ -91,12 +101,7 @@ describe('constructorSlice', () => {
     expect(state.ingredients[1]).toEqual(mockIngredient);
   });
 
-  it('should handle moveIngredientDown', () => {
-    const mockIngredient2: TConstructorIngredient = {
-      ...mockIngredient,
-      id: 'ing-2',
-      name: 'Начинка 2'
-    };
+  test('should handle moveIngredientDown', () => {
     const stateWithIngredients = {
       bun: null,
       ingredients: [mockIngredient, mockIngredient2]
@@ -109,7 +114,7 @@ describe('constructorSlice', () => {
     expect(state.ingredients[1]).toEqual(mockIngredient);
   });
 
-  it('should handle clearConstructor', () => {
+  test('should handle clearConstructor', () => {
     const stateWithItems = {
       bun: mockBun,
       ingredients: [mockIngredient]
@@ -118,7 +123,7 @@ describe('constructorSlice', () => {
     expect(state).toEqual(initialState);
   });
 
-  it('should select constructor', () => {
+  test('should select constructor', () => {
     const state = {
       burgerConstructor: { bun: mockBun, ingredients: [mockIngredient] }
     };
