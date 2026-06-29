@@ -15,6 +15,8 @@ export const BurgerConstructor: FC = () => {
   const user = useSelector(selectUser);
   const orderState = useSelector(selectOrder);
 
+  console.log('BurgerConstructor render:', constructorItems); // Для диагностики
+
   const orderModalData = orderState?.order || null;
   const orderRequest = orderState?.isLoading || false;
   const isBunSelected = !!constructorItems.bun;

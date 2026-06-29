@@ -1,0 +1,86 @@
+◇ injected env (1) from .env // tip: ⌘ enable debugging { debug: true }
+
+[WebServer] <i> [webpack-dev-server] Project is running at:
+
+[WebServer] <i> [webpack-dev-server] Loopback: http://localhost:4000/
+[WebServer] <i> [webpack-dev-server] On Your Network (IPv4): http://192.168.2.104:4000/
+
+[WebServer] <i> [webpack-dev-server] Content not from webpack is served from 'C:\Users\albin\dev13\stellar-burgers\dist' directory
+[WebServer] <i> [webpack-dev-server] 404s will fallback to '/index.html'
+
+[WebServer] <i> [webpack-dev-middleware] wait until bundle finished: /
+
+[WebServer] <i> [webpack-dev-middleware] wait until bundle finished: /
+
+Running 6 tests using 1 worker
+
+
+[WebServer] <i> [webpack-dev-middleware] wait until bundle finished: /f52bee61d00ce995b89f.woff
+
+[WebServer] <i> [webpack-dev-middleware] wait until bundle finished: /3914674f1cb2335acf26.woff
+◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+
+[1/6] [chromium] › tests\constructor.spec.ts:14:7 › Страница конструктора бургера › должен добавлять ингредиент в конструктор
+
+[WebServer] <i> [webpack-dev-middleware] wait until bundle finished: /77ad7fc2baffd9305538.woff
+  1) [chromium] › tests\constructor.spec.ts:14:7 › Страница конструктора бургера › должен добавлять ингредиент в конструктор 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="ingredient-card"]').first().locator('[data-testid="add-button"]')
+
+
+      17 |     
+      18 |     const addButton = ingredientCard.locator('[data-testid="add-button"]');
+    > 19 |     await addButton.click({ force: true });
+         |                     ^
+      20 |
+      21 |     const constructor = page.locator('[data-testid="burger-constructor"]');
+      22 |     await expect(constructor.locator(`text=${ingredientName} (верх)`)).toBeVisible();
+        at C:\Users\albin\dev13\stellar-burgers\tests\constructor.spec.ts:19:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\constructor-Страница-конст-d0458-ть-ингредиент-в-конструктор-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\constructor-Страница-конст-d0458-ть-ингредиент-в-конструктор-chromium\error-context.md
+
+
+◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+
+[2/6] [chromium] › tests\constructor.spec.ts:26:7 › Страница конструктора бургера › должен открывать модальное окно ингредиента по клику
+[3/6] [chromium] › tests\constructor.spec.ts:34:7 › Страница конструктора бургера › должен отображать данные ингредиента в модальном окне
+[4/6] [chromium] › tests\constructor.spec.ts:47:7 › Страница конструктора бургера › должен закрывать модальное окно по клику на крестик
+[5/6] [chromium] › tests\constructor.spec.ts:60:7 › Страница конструктора бургера › должен закрывать модальное окно по клику на оверлей
+[6/6] [chromium] › tests\constructor.spec.ts:105:7 › Создание заказа › должен создать заказ и очистить конструктор
+  2) [chromium] › tests\constructor.spec.ts:105:7 › Создание заказа › должен создать заказ и очистить конструктор 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="ingredient-card"]').first().locator('[data-testid="add-button"]')
+
+
+      106 |     const bunCard = page.locator('[data-testid="ingredient-card"]').first();
+      107 |     const bunName = await bunCard.locator('.text_type_main-default').textContent();
+    > 108 |     await bunCard.locator('[data-testid="add-button"]').click({ force: true });
+          |                                                         ^
+      109 |
+      110 |     const mainCard = page.locator('[data-testid="ingredient-card"]').nth(1);
+      111 |     const mainName = await mainCard.locator('.text_type_main-default').textContent();
+        at C:\Users\albin\dev13\stellar-burgers\tests\constructor.spec.ts:108:57
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\constructor-Создание-заказ-e934e-аказ-и-очистить-конструктор-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\constructor-Создание-заказ-e934e-аказ-и-очистить-конструктор-chromium\error-context.md
+
+
+  2 failed
+    [chromium] › tests\constructor.spec.ts:14:7 › Страница конструктора бургера › должен добавлять ингредиент в конструктор 
+    [chromium] › tests\constructor.spec.ts:105:7 › Создание заказа › должен создать заказ и очистить конструктор 
+  4 passed (1.3m)
